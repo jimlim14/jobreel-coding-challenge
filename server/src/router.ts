@@ -5,11 +5,11 @@ const {
 	getResumes,
 	postResume,
 	editResume,
-} = require('./controllers/controller');
+} = require('./controllers/resumes-controller');
 
 // routes for resumes
 router.get('/resumes', getResumes);
 router.post('/resumes', postResume);
-router.put('/resumes/:id', editResume)
+router.put('/resumes/:id', editResume);
 
 module.exports = router;
