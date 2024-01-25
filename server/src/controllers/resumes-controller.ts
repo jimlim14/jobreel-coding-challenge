@@ -13,6 +13,17 @@ const getResumes = async (req: Request, res: Response) => {
 	}
 };
 
+const getResume = async(req: Request, res: Response) => {
+	try {
+		const resumeId = req.params.id;
+		const resumes = await database.collection("resumes").find({_id: new ObjectId(resumeId) }).toArray();
+		res.status(200).json(resumes);
+	} catch (e) {
+		console.error("something is wrong trying to retrieve resumes: ", e);
+		res.status(500).json({ error: e });
+	}
+}
+
 const postResume = async (req: Request, res: Response) => {
 	try {
 		const { name, summary, experiences } = req.body;
@@ -45,6 +56,7 @@ const editResume = async (req: Request, res: Response) => {
 };
 
 module.exports = {
+	getResume,
 	getResumes,
 	postResume,
 	editResume,
