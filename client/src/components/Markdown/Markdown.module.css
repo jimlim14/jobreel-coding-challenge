@@ -1,0 +1,30 @@
+.reactMarkdown > :first-child {
+	margin-top: 0 !important;
+}
+
+.reactMarkdown > :last-child {
+	margin-bottom: 0 !important;
+}
+
+.reactMarkdown p,
+.reactMarkdown blockquote,
+.reactMarkdown ul,
+.reactMarkdown ol,
+.reactMarkdown dl,
+.reactMarkdown table {
+	margin: 16px 0;
+}
+
+/* <ol> tag is for bullet points with numbers */
+.reactMarkdown ol {
+	margin-left: 16px;
+	padding-left: 16px;
+}
+
+.reactMarkdown ul {
+	padding-left: 16px;
+}
+
+.reactMarkdown {
+	font-size: 14px;
+}
