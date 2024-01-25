@@ -1,7 +1,13 @@
 import Markdown from "@/components/Markdown";
+import ResumeSection from "@/components/ResumeSection";
 import { IResume } from "@/interfaces/interfaces";
 import fetcher from "@/lib/fetcher";
 import { NextPage, NextApiRequest, NextApiResponse } from "next";
+import {
+	summaryIcon,
+	experienceIcon,
+	basicInformationIcon,
+} from "../../../public/images";
 
 export async function getServerSideProps(
 	req: NextApiRequest,
@@ -25,10 +31,11 @@ const Resume: NextPage<Props> = ({ data, error }) => {
 		return <></>;
 	}
 	return (
-		<div className="p-12 flex">
-			<div className="w-full sm:w-2/4 p-6 border-b border-gray-100 bg-white rounded-2xl shadow self-start">
-				testfa wfawe fawef
-				<p>fa wefawe fawef </p>
+		<div className="p-12 flex max-w-screen-xl mx-auto">
+			<div className="w-full">
+				{sections.map((section, i) => (
+					<ResumeSection key={i} section={section} data={data} />
+				))}
 			</div>
 			{data && (
 				<div className="flex-grow flex-shrink p-6 border-b border-gray-100 bg-white rounded shadow-sm self-start">
@@ -43,20 +50,21 @@ const Resume: NextPage<Props> = ({ data, error }) => {
 						Professional Experiences
 					</div>
 					<div>
-						{data.experiences && data.experiences.map((experience) => (
-							<div className="flex mb-4">
-								<div className="w-1/4 text-sm">{experience.timeFrame}</div>
-								<div className="w-3/4 text-sm">
-									<div className="flex">
-										<p className="font-bold">{experience.title}, </p>
-										<p className="italic text-xs self-end">
-											{experience.companyName}
-										</p>
+						{data.experiences &&
+							data.experiences.map((experience) => (
+								<div className="flex mb-4">
+									<div className="w-1/4 text-sm">{experience.timeFrame}</div>
+									<div className="w-3/4 text-sm">
+										<div className="flex">
+											<p className="font-bold">{experience.title}, </p>
+											<p className="italic text-xs self-end">
+												{experience.companyName}
+											</p>
+										</div>
+										<Markdown>{experience.description}</Markdown>
 									</div>
-									<Markdown>{experience.description}</Markdown>
 								</div>
-							</div>
-						))}
+							))}
 					</div>
 				</div>
 			)}
@@ -65,3 +73,9 @@ const Resume: NextPage<Props> = ({ data, error }) => {
 };
 
 export default Resume;
+
+const sections = [
+	{ name: "Basic information", icon: basicInformationIcon },
+	{ name: "Summary", icon: summaryIcon },
+	{ name: "Professional Experience", icon: experienceIcon },
+];
