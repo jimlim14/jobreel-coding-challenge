@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Markdown from "@/components/Markdown";
-import ResumeSection from "@/components/ResumeSection";
+
 import { IExperience, IResume } from "@/interfaces/interfaces";
 import fetcher from "@/lib/fetcher";
 import { NextPage, NextApiRequest, NextApiResponse } from "next";
@@ -8,7 +8,6 @@ import {
 	summaryIcon,
 	experienceIcon,
 	basicInformationIcon,
-	accordionIcon,
 } from "../../../public/images";
 import Image from "next/image";
 import InputField from "@/components/InputField";
@@ -16,6 +15,7 @@ import Button from "@/components/Button";
 import TextArea from "@/components/TextArea";
 import Accordion from "@/components/Accordion";
 import Divider from "@/components/Divider";
+import ResumeEditorHeader from "@/components/ResumeEditorHeader";
 
 export async function getServerSideProps(
 	req: NextApiRequest,
@@ -112,19 +112,10 @@ const Resume: NextPage<Props> = ({ data, error, resumeId }) => {
 					<div className="mr-8 mb-4 p-6 border-b border-gray-100 bg-white rounded-2xl shadow">
 						<Accordion
 							header={
-								<div className="cursor-pointer flex justify-between">
-									<div className="flex">
-										<Image
-											src={basicInformationIcon}
-											alt="summary-icon"
-											height={24}
-											width={24}
-											className="mr-2"
-										/>
-										<p className="truncate">Basic Information</p>
-									</div>
-									<Image src={accordionIcon} alt="accordion-icon" />
-								</div>
+								<ResumeEditorHeader
+									headerIcon={basicInformationIcon}
+									title="Basic Information"
+								/>
 							}
 						>
 							<Divider className="border-b my-6" />
@@ -145,19 +136,7 @@ const Resume: NextPage<Props> = ({ data, error, resumeId }) => {
 				<div className="mr-8 mb-4 p-6 border-b border-gray-100 bg-white rounded-2xl shadow">
 					<Accordion
 						header={
-							<div className="cursor-pointer flex justify-between">
-								<div className="flex">
-									<Image
-										src={summaryIcon}
-										alt="summary-icon"
-										height={24}
-										width={24}
-										className="mr-2"
-									/>
-									<p className="truncate">Summary</p>
-								</div>
-								<Image src={accordionIcon} alt="accordion-icon" />
-							</div>
+							<ResumeEditorHeader headerIcon={summaryIcon} title="Summary" />
 						}
 					>
 						<Divider className="border-b my-6" />
@@ -179,19 +158,10 @@ const Resume: NextPage<Props> = ({ data, error, resumeId }) => {
 				<div className="mr-8 mb-4 p-6 border-b border-gray-100 bg-white rounded-2xl shadow">
 					<Accordion
 						header={
-							<div className="cursor-pointer flex justify-between">
-								<div className="flex">
-									<Image
-										src={experienceIcon}
-										alt="summary-icon"
-										height={24}
-										width={24}
-										className="mr-2"
-									/>
-									<p className="truncate">Professional Experience</p>
-								</div>
-								<Image src={accordionIcon} alt="accordion-icon" />
-							</div>
+							<ResumeEditorHeader
+								headerIcon={experienceIcon}
+								title="Professional Experience"
+							/>
 						}
 					>
 						<Divider className="border-b my-6" />
