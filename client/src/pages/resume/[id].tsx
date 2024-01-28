@@ -141,8 +141,13 @@ const Resume: NextPage<Props> = ({ data, error, resumeId }) => {
 								name="name"
 								value={resumeData.name}
 								onChange={handleChange}
+								className="mt-2 mb-4"
 							/>
-							<Button type="submit">save</Button>
+							<div className="flex justify-end">
+								<Button type="submit" variation="primary">
+									Save
+								</Button>
+							</div>
 						</form>
 					</Accordion>
 				</div>
@@ -163,8 +168,13 @@ const Resume: NextPage<Props> = ({ data, error, resumeId }) => {
 								name="summary"
 								value={resumeData.summary}
 								onChange={handleChange}
+								className="mt-2 mb-4"
 							/>
-							<Button type="submit">save</Button>
+							<div className="flex justify-end">
+								<Button type="submit" variation="primary">
+									Save
+								</Button>
+							</div>
 						</form>
 					</Accordion>
 				</div>
@@ -305,9 +315,21 @@ const Resume: NextPage<Props> = ({ data, error, resumeId }) => {
 										<Divider className="border-b my-6" />
 									</div>
 								))}
-							<Button type="submit">Save</Button>
+							<div className="flex justify-center">
+								<Button
+									type="button"
+									onClick={addExperience}
+									variation="secondary"
+								>
+									add professional experience
+								</Button>
+							</div>
+							<div className="flex justify-end">
+								<Button type="submit" variation="primary">
+									Save
+								</Button>
+							</div>
 						</form>
-						<Button onClick={addExperience}>add professional experience</Button>
 					</Accordion>
 				</div>
 			</div>
