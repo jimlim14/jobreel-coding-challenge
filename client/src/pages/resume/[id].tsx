@@ -105,20 +105,41 @@ const Resume: NextPage<Props> = ({ data, error, resumeId }) => {
 		}));
 	}
 
+	function addSeparator(separator: string, experience: IExperience) {
+		switch (separator) {
+			case "-":
+				if (
+					(experience.startMonth || experience.startYear) &&
+					(experience.endMonth || experience.endYear)
+				) {
+					return "-";
+				}
+				break;
+			case "/":
+				if (
+					(experience.startMonth && experience.startYear) ||
+					(experience.endMonth && experience.endYear)
+				) {
+					return "/";
+				}
+				break;
+		}
+	}
+
 	return (
 		<div className="p-12 flex max-w-screen-2xl mx-auto">
 			<div className="w-2/4 overflow-y-auto">
-				<form onSubmit={(e) => handleSubmit(e, "name")}>
-					<div className="mr-8 mb-4 p-6 border-b border-gray-100 bg-white rounded-2xl shadow">
-						<Accordion
-							header={
-								<ResumeEditorHeader
-									headerIcon={basicInformationIcon}
-									title="Basic Information"
-								/>
-							}
-						>
-							<Divider className="border-b my-6" />
+				<div className="mr-8 mb-4 p-6 border-b border-gray-100 bg-white rounded-2xl shadow">
+					<Accordion
+						header={
+							<ResumeEditorHeader
+								headerIcon={basicInformationIcon}
+								title="Basic Information"
+							/>
+						}
+					>
+						<Divider className="border-b my-6" />
+						<form onSubmit={(e) => handleSubmit(e, "name")}>
 							<label htmlFor="name" className="font-bold">
 								Name
 							</label>
@@ -129,9 +150,9 @@ const Resume: NextPage<Props> = ({ data, error, resumeId }) => {
 								onChange={handleChange}
 							/>
 							<Button type="submit">save</Button>
-						</Accordion>
-					</div>
-				</form>
+						</form>
+					</Accordion>
+				</div>
 
 				<div className="mr-8 mb-4 p-6 border-b border-gray-100 bg-white rounded-2xl shadow">
 					<Accordion
@@ -236,7 +257,7 @@ const Resume: NextPage<Props> = ({ data, error, resumeId }) => {
 														className="cursor-pointer appearance-none w-full outline-none rounded-lg border-2 border-gray-200 bg-white focus:border-blue-600 p-3 text-sm  text-gray-900"
 													>
 														<option value="">Year</option>
-														{yearOptions.map((year) => (
+														{yearOptions.map((year, i) => (
 															<option key={i} value={year}>
 																{year}
 															</option>
@@ -265,7 +286,7 @@ const Resume: NextPage<Props> = ({ data, error, resumeId }) => {
 														className="cursor-pointer appearance-none w-full outline-none rounded-lg border-2 border-gray-200 bg-white focus:border-blue-600 p-3 text-sm  text-gray-900"
 													>
 														<option value="">Year</option>
-														{yearOptions.map((year) => (
+														{yearOptions.map((year, i) => (
 															<option key={i} value={year}>
 																{year}
 															</option>
@@ -316,8 +337,12 @@ const Resume: NextPage<Props> = ({ data, error, resumeId }) => {
 							resumeData.experiences.map((experience) => (
 								<div className="flex mb-4">
 									<div className="w-1/4 text-sm">
-										{experience.startMonth} {experience.startYear} -{" "}
-										{experience.endMonth} {experience.endYear}
+										{experience.startMonth}
+										{addSeparator("/", experience)}
+										{experience.startYear} {addSeparator("-", experience)}{" "}
+										{experience.endMonth}
+										{addSeparator("/", experience)}
+										{experience.endYear}
 									</div>
 									<div className="w-3/4 text-sm">
 										<div className="flex truncate">
@@ -353,43 +378,4 @@ const monthOptions = [
 	{ text: "October", value: "10" },
 	{ text: "November", value: "11" },
 	{ text: "December", value: "12" },
-];
-
-// const yearSelection = [
-// 	{ text: "2000", value: "2000" },
-// 	{ text: "2001", value: "2001" },
-// 	{ text: "2002", value: "2002" },
-// 	{ text: "2003", value: "2003" },
-// 	{ text: "2004", value: "2004" },
-// 	{ text: "2005", value: "2005" },
-// 	{ text: "2006", value: "2006" },
-// 	{ text: "2007", value: "2007" },
-// 	{ text: "2008", value: "2008" },
-// 	{ text: "2009", value: "2009" },
-// 	{ text: "2010", value: "2010" },
-// 	{ text: "2011", value: "2011" },
-// 	{ text: "2012", value: "2012" },
-// 	{ text: "2013", value: "2013" },
-// 	{ text: "2014", value: "2014" },
-// 	{ text: "2015", value: "2015" },
-// 	{ text: "2016", value: "2016" },
-// 	{ text: "2017", value: "2017" },
-// 	{ text: "2018", value: "2018" },
-// 	{ text: "2019", value: "2019" },
-// 	{ text: "2020", value: "2020" },
-// 	{ text: "2021", value: "2021" },
-// 	{ text: "2022", value: "2022" },
-// 	{ text: "2023", value: "2023" },
-// 	{ text: "2024", value: "2024" },
-// ];
-
-const sections = [
-	{
-		title: "Basic information",
-		icon: basicInformationIcon,
-		name: "name",
-		value: "su",
-	},
-	{ title: "Summary", icon: summaryIcon },
-	{ title: "Professional Experience", icon: experienceIcon },
 ];
