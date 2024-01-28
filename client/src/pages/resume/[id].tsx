@@ -1,6 +1,4 @@
 import { useState } from "react";
-import Markdown from "@/components/Markdown";
-
 import { IExperience, IResume } from "@/interfaces/interfaces";
 import fetcher from "@/lib/fetcher";
 import { NextPage, NextApiRequest, NextApiResponse } from "next";
@@ -9,13 +7,13 @@ import {
 	experienceIcon,
 	basicInformationIcon,
 } from "../../../public/images";
-import Image from "next/image";
 import InputField from "@/components/InputField";
 import Button from "@/components/Button";
 import TextArea from "@/components/TextArea";
 import Accordion from "@/components/Accordion";
 import Divider from "@/components/Divider";
 import ResumeEditorHeader from "@/components/ResumeEditorHeader";
+import ResumePreview from "@/components/ResumePreview";
 
 export async function getServerSideProps(
 	req: NextApiRequest,
@@ -103,27 +101,6 @@ const Resume: NextPage<Props> = ({ data, error, resumeId }) => {
 				? [...prevResumeData.experiences, newExperience]
 				: [newExperience],
 		}));
-	}
-
-	function addSeparator(separator: string, experience: IExperience) {
-		switch (separator) {
-			case "-":
-				if (
-					(experience.startMonth || experience.startYear) &&
-					(experience.endMonth || experience.endYear)
-				) {
-					return "-";
-				}
-				break;
-			case "/":
-				if (
-					(experience.startMonth && experience.startYear) ||
-					(experience.endMonth && experience.endYear)
-				) {
-					return "/";
-				}
-				break;
-		}
 	}
 
 	return (
@@ -321,42 +298,8 @@ const Resume: NextPage<Props> = ({ data, error, resumeId }) => {
 				</div>
 			</div>
 			{data && (
-				<div className="sticky top-12 w-3/4 p-6 border-b border-gray-100 bg-white rounded shadow-sm self-start">
-					<div className="flex items-center flex-col">
-						<p className="mb-4 italic text-xl sm:text-4xl">{resumeData.name}</p>
-					</div>
-					<div className="mb-4 flex justify-center bg-gray-100 font-bold">
-						Summary
-					</div>
-					<p className="mb-4 text-sm">{resumeData.summary}</p>
-					<div className="mb-4 flex justify-center bg-gray-100 font-bold">
-						Professional Experiences
-					</div>
-					<div>
-						{data.experiences &&
-							resumeData.experiences.map((experience) => (
-								<div className="flex mb-4">
-									<div className="w-1/4 text-sm">
-										{experience.startMonth}
-										{addSeparator("/", experience)}
-										{experience.startYear} {addSeparator("-", experience)}{" "}
-										{experience.endMonth}
-										{addSeparator("/", experience)}
-										{experience.endYear}
-									</div>
-									<div className="w-3/4 text-sm">
-										<div className="flex truncate">
-											<p className="font-bold">
-												{experience.title}
-												{experience.companyName && ","}
-											</p>
-											<p className="italic">{experience.companyName}</p>
-										</div>
-										<Markdown>{experience.description}</Markdown>
-									</div>
-								</div>
-							))}
-					</div>
+				<div className="sticky top-12 w-2/4 p-6 border-b border-gray-100 bg-white rounded shadow-sm self-start">
+					<ResumePreview resumeData={resumeData} />
 				</div>
 			)}
 		</div>
