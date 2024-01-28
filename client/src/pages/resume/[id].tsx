@@ -14,6 +14,8 @@ import Accordion from "@/components/Accordion";
 import Divider from "@/components/Divider";
 import ResumeEditorHeader from "@/components/ResumeEditorHeader";
 import ResumePreview from "@/components/ResumePreview";
+import { ToastContainer, toast, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export async function getServerSideProps(
 	req: NextApiRequest,
@@ -34,6 +36,18 @@ interface Props {
 }
 
 const Resume: NextPage<Props> = ({ data, error, resumeId }) => {
+	const notify = () =>
+		toast.success("Successfully saved!", {
+			position: "bottom-right",
+			autoClose: 2000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			theme: "light",
+			transition: Bounce,
+		});
 	const currentYear = new Date().getFullYear();
 	const yearOptions: number[] = [];
 	for (let year = currentYear; year >= currentYear - 40; year--) {
@@ -89,9 +103,11 @@ const Resume: NextPage<Props> = ({ data, error, resumeId }) => {
 	) {
 		e.preventDefault();
 
-		const editedResume = await fetcher(`/resumes/${resumeId}`, "PUT", {
+		const { data, error } = await fetcher(`/resumes/${resumeId}`, "PUT", {
 			[section]: resumeData[section],
 		});
+
+		notify();
 	}
 
 	function addExperience() {
@@ -300,6 +316,7 @@ const Resume: NextPage<Props> = ({ data, error, resumeId }) => {
 					<ResumePreview resumeData={resumeData} />
 				</div>
 			)}
+			<ToastContainer />
 		</div>
 	);
 };
