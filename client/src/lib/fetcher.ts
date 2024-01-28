@@ -1,7 +1,7 @@
 export default async function fetcher(
 	url: string,
 	method: string | undefined = undefined,
-	data = undefined,
+	data: any = undefined,
 ) {
 	try {
 		const res = await fetch(`http://localhost:3000${url}`, {

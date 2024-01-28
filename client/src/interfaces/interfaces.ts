@@ -3,11 +3,15 @@ export interface IResume {
 	name: string;
 	summary: string;
 	experiences: IExperience[];
+	[key: string]: any;
 }
 
 export interface IExperience {
 	title: string;
 	companyName: string;
-	timeFrame: string;
+	startMonth: string;
+	startYear: number;
+	endMonth: string;
+	endYear: number;
 	description: string;
 }
