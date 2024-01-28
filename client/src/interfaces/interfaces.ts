@@ -10,8 +10,8 @@ export interface IExperience {
 	title: string;
 	companyName: string;
 	startMonth: string;
-	startYear: number;
+	startYear: string;
 	endMonth: string;
-	endYear: number;
+	endYear: string;
 	description: string;
 }

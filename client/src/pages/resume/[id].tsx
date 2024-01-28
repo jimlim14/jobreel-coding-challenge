@@ -44,9 +44,9 @@ const Resume: NextPage<Props> = ({ data, error, resumeId }) => {
 		title: "",
 		companyName: "",
 		startMonth: "",
-		startYear: 0,
+		startYear: "",
 		endMonth: "",
-		endYear: 0,
+		endYear: "",
 		description: "",
 	};
 
@@ -167,7 +167,7 @@ const Resume: NextPage<Props> = ({ data, error, resumeId }) => {
 							{resumeData.experiences &&
 								resumeData.experiences.map((experience, i) => (
 									<div key={i}>
-										<p className="my-2">Experience {i + 1}</p>
+										<p className="text-xl font-bold my-2">Experience {i + 1}</p>
 										<div className="mb-4">
 											<label
 												htmlFor="title"
@@ -201,15 +201,13 @@ const Resume: NextPage<Props> = ({ data, error, resumeId }) => {
 											</div>
 										</div>
 										<div className="mb-4">
-											<label
-												htmlFor="timeFrame"
-												className="font-bold text-gray-600"
-											>
-												Time frame
-											</label>
-											<div className="flex">
-												<p className="w-2/4">Start date</p>
-												<p className="w-2/4">End date</p>
+											<div className="flex mb-2">
+												<p className="w-2/4 font-bold text-gray-600">
+													Start date
+												</p>
+												<p className="w-2/4 font-bold text-gray-600">
+													End date
+												</p>
 											</div>
 											<div className="flex">
 												<div className="flex w-2/4">
@@ -233,7 +231,7 @@ const Resume: NextPage<Props> = ({ data, error, resumeId }) => {
 														value={experience.startYear}
 														className="cursor-pointer appearance-none w-full outline-none rounded-lg border-2 border-gray-200 bg-white focus:border-blue-600 p-3 text-sm  text-gray-900"
 													>
-														<option value="">Year</option>
+														<option value={""}>Year</option>
 														{yearOptions.map((year, i) => (
 															<option key={i} value={year}>
 																{year}
@@ -262,7 +260,7 @@ const Resume: NextPage<Props> = ({ data, error, resumeId }) => {
 														value={experience.endYear}
 														className="cursor-pointer appearance-none w-full outline-none rounded-lg border-2 border-gray-200 bg-white focus:border-blue-600 p-3 text-sm  text-gray-900"
 													>
-														<option value="">Year</option>
+														<option value={""}>Year</option>
 														{yearOptions.map((year, i) => (
 															<option key={i} value={year}>
 																{year}

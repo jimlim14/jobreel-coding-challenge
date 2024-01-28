@@ -6,22 +6,29 @@ interface Props {
 }
 
 const ResumePreview: React.FC<Props> = ({ resumeData }) => {
+	function formateTimeFrame(experience: IExperience) {
+		return (
+			<>
+				{experience.startMonth}
+				{addSeparator("/", experience.startMonth, experience.startYear)}
+				{experience.startYear && experience.startYear}{" "}
+				{addSeparator("-", experience.endMonth, experience.endYear)}{" "}
+				{experience.endMonth}
+				{addSeparator("/", experience.endMonth, experience.endYear)}
+				{experience.endYear && experience.endYear}
+			</>
+		);
+	}
 
-  function addSeparator(separator: string, experience: IExperience) {
+	function addSeparator(separator: string, month: string, year: string) {
 		switch (separator) {
 			case "-":
-				if (
-					(experience.startMonth || experience.startYear) &&
-					(experience.endMonth || experience.endYear)
-				) {
+				if (month || year) {
 					return "-";
 				}
 				break;
 			case "/":
-				if (
-					(experience.startMonth && experience.startYear) ||
-					(experience.endMonth && experience.endYear)
-				) {
+				if (month && year) {
 					return "/";
 				}
 				break;
@@ -45,12 +52,7 @@ const ResumePreview: React.FC<Props> = ({ resumeData }) => {
 					resumeData.experiences.map((experience) => (
 						<div className="flex mb-4">
 							<div className="w-1/4 text-sm">
-								{experience.startMonth}
-								{addSeparator("/", experience)}
-								{experience.startYear} {addSeparator("-", experience)}{" "}
-								{experience.endMonth}
-								{addSeparator("/", experience)}
-								{experience.endYear}
+								{formateTimeFrame(experience)}
 							</div>
 							<div className="w-3/4 text-sm">
 								<div className="flex truncate">
