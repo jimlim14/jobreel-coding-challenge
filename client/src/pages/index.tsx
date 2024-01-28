@@ -5,6 +5,7 @@ import Button from "@/components/Button";
 import Resume from "@/components/Resume";
 import fetcher from "@/lib/fetcher";
 import Link from "next/link";
+import ResumePreview from "@/components/ResumePreview";
 
 export default function Home() {
 	const [resumes, setResumes] = useState<IResume[]>([]);
@@ -32,17 +33,21 @@ export default function Home() {
 	}
 
 	return (
-		<div className="px-6 mx-auto w-full max-w-screen-xl lg:h014">
+		<div className="px-6 mx-auto w-full max-w-screen-xl">
 			<div className="flex justify-between items-center py-6">
 				<p className="text-2xl">My resumes</p>
 				<Button onClick={addResume}>Add resume</Button>
 			</div>
-			{resumes &&
-				resumes.map((resume: IResume, i: number) => (
-					<Link href={`/resume/${resume._id}`}>
-						<Resume key={resume._id} resume={resume} idx={i} />
-					</Link>
-				))}
+			<div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+				{resumes &&
+					resumes.map((resume: IResume, i: number) => (
+						<Link key={i} href={`/resume/${resume._id}`}>
+							<div className="bg-white h-[400px] rounded-2xl border-b border-gray-100 shadow-lg">
+								<ResumePreview resumeData={resume} />
+							</div>
+						</Link>
+					))}
+			</div>
 		</div>
 	);
 }
