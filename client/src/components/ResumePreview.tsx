@@ -38,7 +38,7 @@ const ResumePreview: React.FC<Props> = ({ resumeData }) => {
 	return (
 		<>
 			<div className="flex items-center flex-col">
-				<p className="mb-4 italic text-xl sm:text-4xl">{resumeData.name}</p>
+				<p className="mb-4 italic text-xl sm:text-3xl">{resumeData.name}</p>
 			</div>
 			<div className="mb-4 flex justify-center bg-gray-100 font-bold">
 				Summary

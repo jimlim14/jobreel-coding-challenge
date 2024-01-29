@@ -58,7 +58,7 @@ export default function Home() {
 				{resumes &&
 					resumes.map((resume: IResume, i: number) => (
 						<Link key={i} href={`/resume/${resume._id}`}>
-							<div className="bg-white h-[400px] rounded-2xl border-b border-gray-100 shadow-lg">
+							<div className="bg-white overflow-y-auto h-[400px] rounded-2xl border-b border-gray-100 shadow-lg">
 								<ResumePreview resumeData={resume} />
 							</div>
 						</Link>
