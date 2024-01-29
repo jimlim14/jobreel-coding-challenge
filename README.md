@@ -32,11 +32,15 @@ We created this boilerplate project that already has a server app based on NodeJ
 docker-compose up
 ```
 
-Then you can install & run the server app
+Then you can install & run the client and server app
 
 ```
 cd server
 npm i 
+npm run dev
+
+cd client
+npm i
 npm run dev
 ```
 
