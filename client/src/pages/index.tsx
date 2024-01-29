@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { IResume } from "@/interfaces/interfaces";
-import Button from "@/components/Button";
-import fetcher from "@/lib/fetcher";
+import { IResume } from "@app/interfaces/interfaces";
+import Button from "@app/components/Button";
+import fetcher from "@app/lib/fetcher";
 import Link from "next/link";
-import ResumePreview from "@/components/ResumePreview";
+import ResumePreview from "@app/components/ResumePreview";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

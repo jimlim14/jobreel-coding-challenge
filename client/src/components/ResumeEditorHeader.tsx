@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { accordionIcon } from "../../public/images";
+import { accordionIcon } from "@public/images";
 
 interface Props {
 	headerIcon: string;

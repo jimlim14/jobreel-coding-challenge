@@ -1,19 +1,19 @@
 import { useState } from "react";
-import { IExperience, IResume } from "@/interfaces/interfaces";
-import fetcher from "@/lib/fetcher";
+import { IExperience, IResume } from "@app/interfaces/interfaces";
+import fetcher from "@app/lib/fetcher";
 import { NextPage, NextApiRequest, NextApiResponse } from "next";
 import {
 	summaryIcon,
 	experienceIcon,
 	basicInformationIcon,
-} from "../../../public/images";
-import InputField from "@/components/InputField";
-import Button from "@/components/Button";
-import TextArea from "@/components/TextArea";
-import Accordion from "@/components/Accordion";
-import Divider from "@/components/Divider";
-import ResumeEditorHeader from "@/components/ResumeEditorHeader";
-import ResumePreview from "@/components/ResumePreview";
+} from "@public/images";
+import InputField from "@app/components/InputField";
+import Button from "@app/components/Button";
+import TextArea from "@app/components/TextArea";
+import Accordion from "@app/components/Accordion";
+import Divider from "@app/components/Divider";
+import ResumeEditorHeader from "@app/components/ResumeEditorHeader";
+import ResumePreview from "@app/components/ResumePreview";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

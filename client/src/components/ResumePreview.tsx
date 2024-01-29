@@ -1,5 +1,5 @@
-import Markdown from "@/components/Markdown";
-import { IResume, IExperience } from "@/interfaces/interfaces";
+import Markdown from "@app/components/Markdown";
+import { IResume, IExperience } from "@app/interfaces/interfaces";
 
 interface Props {
 	resumeData: IResume;
