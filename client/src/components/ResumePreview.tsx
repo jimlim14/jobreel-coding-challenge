@@ -43,7 +43,9 @@ const ResumePreview: React.FC<Props> = ({ resumeData }) => {
 			<div className="mb-4 flex justify-center bg-gray-100 font-bold">
 				Summary
 			</div>
-			<p className="mb-4 text-sm">{resumeData.summary}</p>
+			<p className="mb-4 text-sm sm:text-base md:text-sm">
+				{resumeData.summary}
+			</p>
 			<div className="mb-4 flex justify-center bg-gray-100 font-bold">
 				Professional Experiences
 			</div>
@@ -54,7 +56,7 @@ const ResumePreview: React.FC<Props> = ({ resumeData }) => {
 							<div className="w-1/4 text-sm">
 								{formateTimeFrame(experience)}
 							</div>
-							<div className="w-3/4 text-sm">
+							<div className="w-3/4 text-sm sm:text-base md:text-sm">
 								<div className="flex truncate">
 									<p className="font-bold">
 										{experience.title}

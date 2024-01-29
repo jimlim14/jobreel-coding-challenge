@@ -120,9 +120,9 @@ const Resume: NextPage<Props> = ({ data, error, resumeId }) => {
 	}
 
 	return (
-		<div className="p-12 flex max-w-screen-2xl mx-auto">
-			<div className="w-2/4 overflow-y-auto">
-				<div className="mr-8 mb-4 p-6 border-b border-gray-100 bg-white rounded-2xl shadow">
+		<div className="w-full p-12 flex flex-col md:flex-row max-w-screen-2xl mx-auto">
+			<div className="md:w-full md:mr-8 overflow-y-auto">
+				<div className="mb-4 p-6 border-b border-gray-100 bg-white rounded-2xl shadow">
 					<Accordion
 						header={
 							<ResumeEditorHeader
@@ -152,7 +152,7 @@ const Resume: NextPage<Props> = ({ data, error, resumeId }) => {
 					</Accordion>
 				</div>
 
-				<div className="mr-8 mb-4 p-6 border-b border-gray-100 bg-white rounded-2xl shadow">
+				<div className="mb-4 p-6 border-b border-gray-100 bg-white rounded-2xl shadow">
 					<Accordion
 						header={
 							<ResumeEditorHeader headerIcon={summaryIcon} title="Summary" />
@@ -179,7 +179,7 @@ const Resume: NextPage<Props> = ({ data, error, resumeId }) => {
 					</Accordion>
 				</div>
 
-				<div className="mr-8 mb-4 p-6 border-b border-gray-100 bg-white rounded-2xl shadow">
+				<div className="mb-4 p-6 border-b border-gray-100 bg-white rounded-2xl shadow">
 					<Accordion
 						header={
 							<ResumeEditorHeader
@@ -334,7 +334,7 @@ const Resume: NextPage<Props> = ({ data, error, resumeId }) => {
 				</div>
 			</div>
 			{data && (
-				<div className="sticky top-12 w-2/4 p-6 border-b border-gray-100 bg-white rounded shadow-sm self-start">
+				<div className="md:w-full sticky top-12 p-6 border-b border-gray-100 bg-white rounded shadow-sm self-start">
 					<ResumePreview resumeData={resumeData} />
 				</div>
 			)}
